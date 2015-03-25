@@ -8,16 +8,20 @@
 
 import UIKit
 
-class MapViewController: UIViewController, TypesTableViewControllerDelegate {
+class MapViewController: UIViewController, TypesTableViewControllerDelegate, CLLocationManagerDelegate {
   
     @IBOutlet var mapView: GMSMapView!
   @IBOutlet weak var mapCenterPinImage: UIImageView!
   @IBOutlet weak var pinImageVerticalConstraint: NSLayoutConstraint!
   var searchedTypes = ["taxi"]
-  
+    
+  let locationManager = CLLocationManager()
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
+    locationManager.delegate = self
+    locationManager.requestWhenInUseAuthorization()
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -46,6 +50,32 @@ class MapViewController: UIViewController, TypesTableViewControllerDelegate {
             mapView.mapType = kGMSTypeHybrid
         default:
             mapView.mapType = mapView.mapType
+        }
+    }
+    
+    // 1
+    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        // 2
+        if status == .AuthorizedWhenInUse {
+            
+            // 3
+            locationManager.startUpdatingLocation()
+            
+            //4
+            mapView.myLocationEnabled = true
+            mapView.settings.myLocationButton = true
+        }
+    }
+    
+    // 5
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        if let location = locations.first as? CLLocation {
+            
+            // 6
+            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+            
+            // 7
+            locationManager.stopUpdatingLocation()
         }
     }
 }
