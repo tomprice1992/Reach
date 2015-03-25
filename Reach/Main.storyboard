@@ -19,8 +19,15 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WH4-b1-8hw" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="0.95538055921963005" blue="0.95455594039897929" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3RK-Po-63L">
+                                <rect key="frame" x="0.0" y="579" width="600" height="21"/>
+                                <color key="backgroundColor" red="1" green="0.96119403401932391" blue="0.98687859922944088" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_me" translatesAutoresizingMaskIntoConstraints="NO" id="Zk1-KE-lC0">
                                 <rect key="frame" x="285" y="245" width="30" height="55"/>
                             </imageView>
@@ -30,9 +37,12 @@
                             <constraint firstAttribute="centerY" secondItem="Zk1-KE-lC0" secondAttribute="bottom" id="2Re-av-h44"/>
                             <constraint firstItem="WH4-b1-8hw" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="3tA-9l-Ybq"/>
                             <constraint firstItem="WH4-b1-8hw" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="6Iu-T1-wrg"/>
+                            <constraint firstItem="3RK-Po-63L" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="AJC-ew-K8j"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="3RK-Po-63L" secondAttribute="bottom" id="E0s-Mm-6aj"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="WH4-b1-8hw" secondAttribute="bottom" id="ECH-ro-CLa"/>
                             <constraint firstAttribute="centerX" secondItem="Zk1-KE-lC0" secondAttribute="centerX" id="eEV-hM-eKB"/>
                             <constraint firstAttribute="trailing" secondItem="WH4-b1-8hw" secondAttribute="trailing" id="npj-1P-fQa"/>
+                            <constraint firstAttribute="trailing" secondItem="3RK-Po-63L" secondAttribute="trailing" id="vHy-Ll-z64"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6Hq-pz-3QM">
@@ -56,6 +66,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addressLabel" destination="3RK-Po-63L" id="hmA-ur-2eW"/>
                         <outlet property="mapCenterPinImage" destination="Zk1-KE-lC0" id="Dfo-xZ-1yc"/>
                         <outlet property="mapView" destination="WH4-b1-8hw" id="1hx-ht-ZR0"/>
                         <outlet property="pinImageVerticalConstraint" destination="2Re-av-h44" id="KIp-HD-OAI"/>

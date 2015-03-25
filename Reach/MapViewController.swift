@@ -8,8 +8,9 @@
 
 import UIKit
 
-class MapViewController: UIViewController, TypesTableViewControllerDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, TypesTableViewControllerDelegate, CLLocationManagerDelegate, GMSMapViewDelegate {
   
+    @IBOutlet var addressLabel: UILabel!
     @IBOutlet var mapView: GMSMapView!
   @IBOutlet weak var mapCenterPinImage: UIImageView!
   @IBOutlet weak var pinImageVerticalConstraint: NSLayoutConstraint!
@@ -22,6 +23,7 @@ class MapViewController: UIViewController, TypesTableViewControllerDelegate, CLL
     // Do any additional setup after loading the view, typically from a nib.
     locationManager.delegate = self
     locationManager.requestWhenInUseAuthorization()
+    mapView.delegate = self
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -78,5 +80,48 @@ class MapViewController: UIViewController, TypesTableViewControllerDelegate, CLL
             locationManager.stopUpdatingLocation()
         }
     }
+    
+    func mapView(mapView: GMSMapView!, willMove gesture: Bool) {
+        addressLabel.lock()
+    }
+    
+    func reverseGeocodeCoordinate(coordinate: CLLocationCoordinate2D) {
+        
+        // 1
+        let geocoder = GMSGeocoder()
+        
+        // 2
+        geocoder.reverseGeocodeCoordinate(coordinate) { response , error in
+                  self.addressLabel.unlock()
+            
+            if let address = response?.firstResult() {
+                
+                // 3
+                let lines = address.lines as [String]
+                self.addressLabel.text = join("\n", lines)
+ 
+                let labelHeight = self.addressLabel.intrinsicContentSize().height
+                self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: labelHeight, right: 0)
+                
+                UIView.animateWithDuration(0.25) {
+                    //2
+                    self.pinImageVerticalConstraint.constant = ((labelHeight - self.topLayoutGuide.length) * 0.5)
+                    self.view.layoutIfNeeded()
+                }
+      // 4
+      UIView.animateWithDuration(0.25) {
+        self.view.layoutIfNeeded()
+      }
+    }
+  }
+    }
+    
+    func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
+        reverseGeocodeCoordinate(position.target)
+    }
+    
+
+
+    
 }
 
