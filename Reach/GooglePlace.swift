@@ -24,7 +24,7 @@ class GooglePlace {
   {
     name = dictionary["name"] as String
     address = dictionary["vicinity"] as String
-    //phone = dictionary["formatted_phone_number"] as String
+  //  phone = dictionary["formatted_phone_number"] as String
     let location = dictionary["geometry"]?["location"] as NSDictionary
     let lat = location["lat"] as CLLocationDegrees
     let lng = location["lng"] as CLLocationDegrees

@@ -58,6 +58,10 @@ class MapViewController: UIViewController, TypesTableViewControllerDelegate, CLL
         default:
             mapView.mapType = mapView.mapType
         }
+    
+        
+        
+        
     }
     func mapView(mapView: GMSMapView!, markerInfoContents marker: GMSMarker!) -> UIView! {
         // 1
@@ -67,6 +71,7 @@ class MapViewController: UIViewController, TypesTableViewControllerDelegate, CLL
         if let infoView = UIView.viewFromNibName("MarkerInfoView") as? MarkerInfoView {
             // 3
             infoView.nameLabel.text = placeMarker.place.name
+       //     infoView.placePhone.text = placeMarker.place.phone
             // 4
             if let photo = placeMarker.place.photo {
                 infoView.placePhoto.image = photo
@@ -107,6 +112,8 @@ class MapViewController: UIViewController, TypesTableViewControllerDelegate, CLL
             fetchNearbyPlaces(location.coordinate)
         }
     }
+    
+    
     
     func mapView(mapView: GMSMapView!, willMove gesture: Bool) {
         addressLabel.lock()
