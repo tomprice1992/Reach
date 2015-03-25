@@ -34,5 +34,19 @@ class MapViewController: UIViewController, TypesTableViewControllerDelegate {
     searchedTypes = sorted(controller.selectedTypes)
     dismissViewControllerAnimated(true, completion: nil)
   }
+    
+    @IBAction func mapTypeSegmentPressed(sender: AnyObject) {
+        let segmentedControl = sender as UISegmentedControl
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            mapView.mapType = kGMSTypeNormal
+        case 1:
+            mapView.mapType = kGMSTypeSatellite
+        case 2:
+            mapView.mapType = kGMSTypeHybrid
+        default:
+            mapView.mapType = mapView.mapType
+        }
+    }
 }
 
