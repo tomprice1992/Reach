@@ -14,7 +14,7 @@ class MapViewController: UIViewController, TypesTableViewControllerDelegate, CLL
     @IBOutlet var mapView: GMSMapView!
   @IBOutlet weak var mapCenterPinImage: UIImageView!
   @IBOutlet weak var pinImageVerticalConstraint: NSLayoutConstraint!
-  var searchedTypes = ["taxi"]
+  var searchedTypes = ["taxi_stand"]
     
   let locationManager = CLLocationManager()
     
@@ -39,8 +39,13 @@ class MapViewController: UIViewController, TypesTableViewControllerDelegate, CLL
   func typesController(controller: TypesTableViewController, didSelectTypes types: [String]) {
     searchedTypes = sorted(controller.selectedTypes)
     dismissViewControllerAnimated(true, completion: nil)
+    fetchNearbyPlaces(mapView.camera.target)
   }
     
+    @IBAction func refreshPlaces(sender:
+        AnyObject)
+    { fetchNearbyPlaces(mapView.camera.target) 
+    }
     @IBAction func mapTypeSegmentPressed(sender: AnyObject) {
         let segmentedControl = sender as UISegmentedControl
         switch segmentedControl.selectedSegmentIndex {
@@ -52,6 +57,26 @@ class MapViewController: UIViewController, TypesTableViewControllerDelegate, CLL
             mapView.mapType = kGMSTypeHybrid
         default:
             mapView.mapType = mapView.mapType
+        }
+    }
+    func mapView(mapView: GMSMapView!, markerInfoContents marker: GMSMarker!) -> UIView! {
+        // 1
+        let placeMarker = marker as PlaceMarker
+        
+        // 2
+        if let infoView = UIView.viewFromNibName("MarkerInfoView") as? MarkerInfoView {
+            // 3
+            infoView.nameLabel.text = placeMarker.place.name
+            // 4
+            if let photo = placeMarker.place.photo {
+                infoView.placePhoto.image = photo
+            } else {
+                infoView.placePhoto.image = UIImage(named: "generic")
+            }
+            
+            return infoView
+        } else {
+            return nil
         }
     }
     
@@ -78,6 +103,8 @@ class MapViewController: UIViewController, TypesTableViewControllerDelegate, CLL
             
             // 7
             locationManager.stopUpdatingLocation()
+            
+            fetchNearbyPlaces(location.coordinate)
         }
     }
     
@@ -85,6 +112,30 @@ class MapViewController: UIViewController, TypesTableViewControllerDelegate, CLL
         addressLabel.lock()
     }
     
+    var mapRadius: Double {
+        get {
+            let region = mapView.projection.visibleRegion()
+            let verticalDistance = GMSGeometryDistance(region.farLeft, region.nearLeft)
+            let horizontalDistance = GMSGeometryDistance(region.farLeft, region.farRight)
+            return max(horizontalDistance, verticalDistance)*0.5
+        }
+    }
+    
+    let dataProvider = GoogleDataProvider()
+    
+    func fetchNearbyPlaces(coordinate: CLLocationCoordinate2D) {
+        // 1
+        mapView.clear()
+        // 2
+        dataProvider.fetchPlacesNearCoordinate(coordinate, radius:mapRadius, types: searchedTypes) { places in
+            for place: GooglePlace in places {
+                // 3
+                let marker = PlaceMarker(place: place)
+                // 4
+                marker.map = self.mapView
+            }
+        }
+    }
     func reverseGeocodeCoordinate(coordinate: CLLocationCoordinate2D) {
         
         // 1

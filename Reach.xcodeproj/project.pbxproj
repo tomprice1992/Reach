@@ -33,6 +33,7 @@
 		598A55251AC22FC70038ACB2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 598A55191AC22FC70038ACB2 /* QuartzCore.framework */; };
 		598A55261AC22FC70038ACB2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 598A551A1AC22FC70038ACB2 /* SystemConfiguration.framework */; };
 		598A552B1AC236F70038ACB2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 598A552A1AC236F70038ACB2 /* Images.xcassets */; };
+		598A552D1AC2488F0038ACB2 /* PlaceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598A552C1AC2488F0038ACB2 /* PlaceMaker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		598A551A1AC22FC70038ACB2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		598A55271AC2300E0038ACB2 /* Reach-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reach-Bridging-Header.h"; sourceTree = "<group>"; };
 		598A552A1AC236F70038ACB2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		598A552C1AC2488F0038ACB2 /* PlaceMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceMaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				598A54FA1AC22D910038ACB2 /* MapViewController.swift */,
+				598A552C1AC2488F0038ACB2 /* PlaceMaker.swift */,
 				598A54FC1AC22D980038ACB2 /* TypesTableViewController.swift */,
 				598A54FE1AC22DAA0038ACB2 /* GoogleDataProvider.swift */,
 				598A55001AC22DB60038ACB2 /* GooglePlace.swift */,
@@ -298,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				598A55031AC22DBC0038ACB2 /* MarkerInfoView.swift in Sources */,
+				598A552D1AC2488F0038ACB2 /* PlaceMaker.swift in Sources */,
 				598A54FF1AC22DAA0038ACB2 /* GoogleDataProvider.swift in Sources */,
 				598A54DD1AC22D850038ACB2 /* ViewController.swift in Sources */,
 				598A55011AC22DB60038ACB2 /* GooglePlace.swift in Sources */,

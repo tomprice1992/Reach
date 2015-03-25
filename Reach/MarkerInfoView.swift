@@ -10,6 +10,7 @@ import UIKit
 
 class MarkerInfoView: UIView {
   
+    @IBOutlet var placePhone: UILabel!
   @IBOutlet weak var placePhoto: UIImageView!
   @IBOutlet weak var nameLabel: UILabel!
 }

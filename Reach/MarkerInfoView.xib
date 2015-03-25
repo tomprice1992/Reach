@@ -26,9 +26,18 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walking" translatesAutoresizingMaskIntoConstraints="NO" id="HXI-I9-qMO">
-                    <rect key="frame" x="50" y="100" width="50" height="50"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="walking" translatesAutoresizingMaskIntoConstraints="NO" id="HXI-I9-qMO">
+                    <rect key="frame" x="92" y="100" width="50" height="50"/>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="134" translatesAutoresizingMaskIntoConstraints="NO" id="ZFq-EB-sep">
+                    <rect key="frame" x="-9" y="104" width="134" height="38"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="38" id="NYt-hR-4eh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -43,6 +52,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="nameLabel" destination="Ggu-GN-94s" id="bSx-yX-VR7"/>
+                <outlet property="placePhone" destination="ZFq-EB-sep" id="Et0-lY-Yst"/>
                 <outlet property="placePhoto" destination="Qhb-tQ-t8V" id="tke-mF-GQL"/>
             </connections>
             <point key="canvasLocation" x="536" y="378"/>

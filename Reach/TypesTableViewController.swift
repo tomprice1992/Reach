@@ -14,7 +14,7 @@ protocol TypesTableViewControllerDelegate: class {
 
 class TypesTableViewController: UITableViewController {
   
-  let possibleTypesDictionary = ["taxi":"Taxi"]
+  let possibleTypesDictionary = ["taxi_stand":"Taxi_Stand"]
   var selectedTypes: [String]!
   weak var delegate: TypesTableViewControllerDelegate!
   var sortedKeys: [String] {

@@ -14,6 +14,7 @@ class GooglePlace {
   
   let name: String
   let address: String
+ //let phone: String
   let coordinate: CLLocationCoordinate2D
   let placeType: String
   let photoReference: String?
@@ -23,7 +24,7 @@ class GooglePlace {
   {
     name = dictionary["name"] as String
     address = dictionary["vicinity"] as String
-    
+    //phone = dictionary["formatted_phone_number"] as String
     let location = dictionary["geometry"]?["location"] as NSDictionary
     let lat = location["lat"] as CLLocationDegrees
     let lng = location["lng"] as CLLocationDegrees
@@ -35,7 +36,7 @@ class GooglePlace {
     }
     
     var foundType = "restaurant"
-    let possibleTypes = acceptedTypes.count > 0 ? acceptedTypes : ["taxi"]
+    let possibleTypes = acceptedTypes.count > 0 ? acceptedTypes : ["taxi_stand"]
     for type in dictionary["types"] as [String] {
       if contains(possibleTypes, type) {
         foundType = type
