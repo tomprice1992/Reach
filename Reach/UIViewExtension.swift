@@ -1,13 +1,10 @@
-//
-//  UIViewExtension.swift
-//  Feed Me
-//
-//  Created by Ron Kliffer on 8/30/14.
-//  Copyright (c) 2014 Ron Kliffer. All rights reserved.
-//
 
+//  Reach
+//  Created by Tom Price 2015
+//
 import UIKit
 
+//this must handle animations... aint touched by me
 extension UIView {
   
   func lock() {

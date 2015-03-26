@@ -1,10 +1,9 @@
 //
 //  GoogleDataProvider.swift
-//  Feed Me
-//
-//  Created by Ron Kliffer on 8/30/14.
-//  Copyright (c) 2014 Ron Kliffer. All rights reserved.
-//
+//  Reach
+//  Created by Tom Price 2015
+
+//This has all core information about the googledataprovider
 
 import UIKit
 import Foundation
@@ -12,6 +11,7 @@ import CoreLocation
 
 class GoogleDataProvider {
   
+    //our api key which is unique to our bundle identifier
   let apiKey = "AIzaSyBvqFhyq6obyHJ62LqmY5pdgTQ-i_1IGow"
   var photoCache = [String:UIImage]()
   var placesTask = NSURLSessionDataTask()
@@ -19,17 +19,23 @@ class GoogleDataProvider {
     return NSURLSession.sharedSession()
   }
   
+    //fetch places based on that radius we made
   func fetchPlacesNearCoordinate(coordinate: CLLocationCoordinate2D, radius: Double, types:[String], completion: (([GooglePlace]) -> Void)) -> ()
   {
 
     var urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=\(apiKey)&location=\(coordinate.latitude),\(coordinate.longitude)&radius=\(radius)&rankby=prominence&sensor=true"
-    let typesString = types.count > 0 ? join("|", types) : "food"
+    //this returns taxi stands even if no item is selected in typestableviewcontroller
+    let typesString = types.count > 0 ? join("|", types) : "taxi_stand"
     urlString += "&types=\(typesString)"
     urlString = urlString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
     
     if placesTask.taskIdentifier > 0 && placesTask.state == .Running {
       placesTask.cancel()
     }
+
+    
+    //not fully sure but looks like its defining the placesarray for each place.
+    //defining a json string with the object data
     UIApplication.sharedApplication().networkActivityIndicatorVisible = true
     placesTask = session.dataTaskWithURL(NSURL(string: urlString)!) {data, response, error in
       UIApplication.sharedApplication().networkActivityIndicatorVisible = false
@@ -38,7 +44,10 @@ class GoogleDataProvider {
         if let results = json["results"] as? NSArray {
           for rawPlace:AnyObject in results {
             let place = GooglePlace(dictionary: rawPlace as NSDictionary, acceptedTypes: types)
+            //based on 'acceptedtypes' which is only Taxi_Stand
             placesArray.append(place)
+            
+            //adding the placephoto variable
             if let reference = place.photoReference {
               self.fetchPhotoFromReference(reference) { image in
                 place.photo = image
@@ -54,33 +63,8 @@ class GoogleDataProvider {
     placesTask.resume()
   }
   
-  
-  func fetchDirectionsFrom(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D, completion: ((String?) -> Void)) -> ()
-  {
-    let urlString = "https://maps.googleapis.com/maps/api/directions/json?key=\(apiKey)&origin=\(from.latitude),\(from.longitude)&destination=\(to.latitude),\(to.longitude)&mode=walking"
     
-    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-    session.dataTaskWithURL(NSURL(string: urlString)!) {data, response, error in
-      UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-      var encodedRoute: String?
-      if let json = NSJSONSerialization.JSONObjectWithData(data, options:nil, error:nil) as? [String:AnyObject] {
-        if let routes = json["routes"] as AnyObject? as? [AnyObject] {
-          if let route = routes.first as? [String : AnyObject] {
-            if let polyline = route["overview_polyline"] as AnyObject? as? [String : String] {
-              if let points = polyline["points"] as AnyObject? as? String {
-                encodedRoute = points
-              }
-            }
-          }
-        }
-      }
-      dispatch_async(dispatch_get_main_queue()) {
-        completion(encodedRoute)
-      }
-    }.resume()
-  }
-  
-  
+    //pulling photo of specific place from the api
   func fetchPhotoFromReference(reference: String, completion: ((UIImage?) -> Void)) -> ()
   {
     if let photo = photoCache[reference] as UIImage! {

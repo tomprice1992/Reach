@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		598A54DB1AC22D850038ACB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598A54DA1AC22D850038ACB2 /* AppDelegate.swift */; };
-		598A54DD1AC22D850038ACB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598A54DC1AC22D850038ACB2 /* ViewController.swift */; };
 		598A54F11AC22D850038ACB2 /* ReachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598A54F01AC22D850038ACB2 /* ReachTests.swift */; };
 		598A54FB1AC22D910038ACB2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598A54FA1AC22D910038ACB2 /* MapViewController.swift */; };
 		598A54FD1AC22D980038ACB2 /* TypesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598A54FC1AC22D980038ACB2 /* TypesTableViewController.swift */; };
@@ -50,7 +49,6 @@
 		598A54D51AC22D850038ACB2 /* Reach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		598A54D91AC22D850038ACB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		598A54DA1AC22D850038ACB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		598A54DC1AC22D850038ACB2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		598A54EA1AC22D850038ACB2 /* ReachTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReachTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		598A54EF1AC22D850038ACB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		598A54F01AC22D850038ACB2 /* ReachTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachTests.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 				598A54FE1AC22DAA0038ACB2 /* GoogleDataProvider.swift */,
 				598A55001AC22DB60038ACB2 /* GooglePlace.swift */,
 				598A54DA1AC22D850038ACB2 /* AppDelegate.swift */,
-				598A54DC1AC22D850038ACB2 /* ViewController.swift */,
 				598A55021AC22DBC0038ACB2 /* MarkerInfoView.swift */,
 				598A55041AC22DC80038ACB2 /* MarkerInfoView.xib */,
 				598A55061AC22DCF0038ACB2 /* UIViewExtension.swift */,
@@ -303,7 +300,6 @@
 				598A55031AC22DBC0038ACB2 /* MarkerInfoView.swift in Sources */,
 				598A552D1AC2488F0038ACB2 /* PlaceMaker.swift in Sources */,
 				598A54FF1AC22DAA0038ACB2 /* GoogleDataProvider.swift in Sources */,
-				598A54DD1AC22D850038ACB2 /* ViewController.swift in Sources */,
 				598A55011AC22DB60038ACB2 /* GooglePlace.swift in Sources */,
 				598A54FD1AC22D980038ACB2 /* TypesTableViewController.swift in Sources */,
 				598A54FB1AC22D910038ACB2 /* MapViewController.swift in Sources */,
@@ -496,6 +492,7 @@
 				598A54F61AC22D850038ACB2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		598A54F71AC22D850038ACB2 /* Build configuration list for PBXNativeTarget "ReachTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +501,7 @@
 				598A54F91AC22D850038ACB2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

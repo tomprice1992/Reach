@@ -1,20 +1,19 @@
 //
 //  MarkerInfoView.swift
-//  Feed Me
-//
-//  Created by Ron Kliffer on 8/30/14.
-//  Copyright (c) 2014 Ron Kliffer. All rights reserved.
+//  Reach
+//  Created by Tom Price 2015
 //
 
 import UIKit
 
 class MarkerInfoView: UIView {
     
-
+//this is the class for the XIB file below just linking up the uilabels, imageview and textfields
   @IBOutlet var placePhone: UITextField!
   @IBOutlet weak var placePhoto: UIImageView!
   @IBOutlet weak var nameLabel: UILabel!
     
+    //this function can be deleted,  phone numbers
     @IBAction func dialPhone(sender: AnyObject) {
         if nameLabel.text == "Carriages"
         {

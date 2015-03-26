@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reach/MapViewController.swift"
-            timestampString = "448956608.936396"
+            timestampString = "449029407.227289"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "mapTypeSegmentPressed(_:)"
             landmarkType = "5">
          </BreakpointContent>

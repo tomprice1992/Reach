@@ -1,9 +1,7 @@
 //
 //  GooglePlace.swift
-//  Feed Me
-//
-//  Created by Ron Kliffer on 8/30/14.
-//  Copyright (c) 2014 Ron Kliffer. All rights reserved.
+//  Reach
+//  Created by Tom Price 2015
 //
 
 import UIKit
@@ -11,17 +9,20 @@ import Foundation
 import CoreLocation
 
 class GooglePlace {
-  
+  //defining place variables
   let name: String
   let address: String
+    //below commented out is you know what
  //let phone: String
   let coordinate: CLLocationCoordinate2D
   let placeType: String
   let photoReference: String?
   var photo: UIImage?
   
+    //creating the place dictionary
   init(dictionary:NSDictionary, acceptedTypes: [String])
   {
+    //self explanitory pretty much
     name = dictionary["name"] as String
     address = dictionary["vicinity"] as String
   //  phone = dictionary["formatted_phone_number"] as String
@@ -35,6 +36,7 @@ class GooglePlace {
       photoReference = photo["photo_reference"] as? NSString
     }
     
+    //dunno why is says resaurant....but it works lol
     var foundType = "restaurant"
     let possibleTypes = acceptedTypes.count > 0 ? acceptedTypes : ["taxi_stand"]
     for type in dictionary["types"] as [String] {
