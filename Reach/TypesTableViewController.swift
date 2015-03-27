@@ -25,6 +25,10 @@ class TypesTableViewController: UITableViewController {
     }
   }
   
+    @IBAction func phoneCall(sender: AnyObject) {
+        UIApplication .sharedApplication() .openURL(NSURL(string:"tel:0000000000")!)
+        }
+    
   // this is just another link to go back and to remember the selectedtype from this menu
 
   @IBAction func donePressed(sender: AnyObject) {
